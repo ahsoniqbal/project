@@ -15,13 +15,13 @@
 		</div>
 	</div>
 
-	<div class="row my-2" th:each="que: ${questions}">
+	<div class="row my-2" th:each="que: ${ques}">
 
 		<div class="col-sm-6">
 		    <div class="card">
 		      <div class="card-body">
 		       <h5 th:text="${que.question}" class="card-title"></h5>
-		       <a  th:href="@{/users/{id}(id = ${que.askedBy.id})}" th:text="${que.askedBy.username}" href="#" class="card-link">Card link</a>
+		       <a  th:href="@{/profile/{id}(id = ${que.askedBy.id})}" th:text="${que.askedBy.username}" href="#" class="card-link">Card link</a>
 		        <p th:text="${#dates.format(que.postedOn, 'dd-MMM-yyyy')}" class="float-right"></p> 
 		      </div>
 		    </div>

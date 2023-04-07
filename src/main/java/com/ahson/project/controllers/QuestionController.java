@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ahson.project.models.Poll;
 import com.ahson.project.models.Question;
@@ -37,8 +38,11 @@ public class QuestionController {
 	}
 	
 	@PostMapping("/questions")
-	public String ask(@ModelAttribute("ques") Question question) {
-		return "questions/insert";
+	public String ask(@ModelAttribute("ques") Question question, RedirectAttributes ra) {
+		
+		question.getPolls().forEach(e -> System.out.println(e.getBody()));
+		
+		return "redirect:/questions/ask";
 	}
 	
 	

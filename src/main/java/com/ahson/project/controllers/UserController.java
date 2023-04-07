@@ -23,7 +23,7 @@ public class UserController {
 	private UserService userService;
 	
 	
-	@GetMapping("/users/{id}")
+	@GetMapping("/profile/{id}")
 	public String getUser(@PathVariable Integer id, Model model){
 		Optional<User> user = userService.getUserById(id);
 		if(user == null) return "errors/500"; 
