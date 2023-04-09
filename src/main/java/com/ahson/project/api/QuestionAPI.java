@@ -45,4 +45,21 @@ public class QuestionAPI {
 		return new ResponseEntity<ResponseWrapper>(new ResponseWrapper(0, "Exception occured"), HttpStatus.FORBIDDEN);
 	}
 	
+	@PostMapping("/questions/options")
+	public ResponseEntity<ResponseWrapper> addOption(@AuthenticationPrincipal MyUserDetails user, @RequestBody Question question){
+		Question q = new Question();
+		
+		if(question != null) {
+			question.setAskedBy(user.getUser());
+			question.setPostedOn(new Date());
+
+			questionService.createQuestion(question);
+			
+			System.out.println(question);
+			
+			return new ResponseEntity<ResponseWrapper>(new ResponseWrapper(201,"User Created", question), HttpStatus.CREATED);
+		}
+		return new ResponseEntity<ResponseWrapper>(new ResponseWrapper(0, "Exception occured"), HttpStatus.FORBIDDEN);
+	}
+	
 }

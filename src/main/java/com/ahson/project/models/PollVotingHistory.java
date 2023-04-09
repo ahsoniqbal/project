@@ -1,41 +1,49 @@
 package com.ahson.project.models;
 
-import java.sql.Date;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "poll_voting_history")
 public class PollVotingHistory {
+	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	@ManyToOne
+	private Long id;
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Question question;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Poll poll;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
-	private Date created_at;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="created_at")
+	private Date createdAt;
 	
 	
 	public PollVotingHistory() {}
-	public PollVotingHistory(Integer id, Question question, Poll poll, User user, Date created_at) {
+	public PollVotingHistory(Long id, Question question, Poll poll, User user, Date createdAt) {
 		super();
 		this.id = id;
 		this.question = question;
 		this.poll = poll;
 		this.user = user;
-		this.created_at = created_at;
+		this.createdAt = createdAt;
 	}
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Question getQuestion() {
@@ -56,11 +64,16 @@ public class PollVotingHistory {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Date getCreated_at() {
-		return created_at;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	@Override
+	public String toString() {
+		return "PollVotingHistory [id=" + id + ", question=" + question + ", poll=" + poll + ", user=" + user
+				+ ", createdAt=" + createdAt + "]";
 	}
 	
 }
