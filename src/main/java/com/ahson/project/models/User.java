@@ -118,4 +118,11 @@ public class User {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", role="
+				+ role + ", bio=" + bio + ", location=" + location + ", dateOfJoining=" + dateOfJoining + ", isActive="
+				+ isActive + "]";
+	}
 }

@@ -21,20 +21,22 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 
 @Entity
 @Table(name = "questions")
 public class Question {
 	
-	@NotNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
 	@NotEmpty
-	@Size(min = 10, max = 150)
+	@Size(min = 5, max = 150)
 	private String question;
 	
 	@NotNull
@@ -48,6 +50,7 @@ public class Question {
 	private User askedBy;
 	
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<Poll> polls = new ArrayList<Poll>();
 
 	public Question() {}

@@ -1,4 +1,4 @@
-package com.ahson.project.controllers;
+package com.ahson.project.models;
 
 import java.util.ArrayList;
 import java.util.List;

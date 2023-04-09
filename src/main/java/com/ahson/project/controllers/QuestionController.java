@@ -1,12 +1,14 @@
 package com.ahson.project.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -25,34 +27,26 @@ public class QuestionController {
 		List<Question> questions = questionService.getAllQuestion();
 		if(questions!=null) {
 			model.addAttribute("ques", questions);
-			return "questions/view";
+			return "questions/list";
 		}
 		return "errors/500";
-
 	}
 	
 	@GetMapping("/questions/ask")
 	public String askPage(@ModelAttribute("ques") Question question) {
-		
 		return "questions/insert";
 	}
 	
-	@PostMapping("/questions")
-	public String ask(@ModelAttribute("ques") Question question, RedirectAttributes ra) {
-		
-		question.getPolls().forEach(e -> System.out.println(e.getBody()));
-		
-		return "redirect:/questions/ask";
+	@GetMapping("/questions/{id}")
+	public String getQuestion(@PathVariable Long id, Model model) {
+		if(id!=null) {
+			Optional<Question> questionOptional = questionService.getQuestion(id);
+			if(questionOptional.isEmpty()) return "errors/404";
+			Question question = questionOptional.get();
+			model.addAttribute("ques", question);
+			return "questions/view";
+		}
+		return "errors/404";
 	}
 	
-	
-//	@PostMapping("/questions/ask")
-//	public String addQuestion(@ModelAttribute("quest") Question question, Model model) {
-//		model.addAttribute("success", "Question Added");
-//		System.out.println(question.getQuestion());
-//		System.out.println(question.getPolls().get(0).getBody());
-//		
-//		return "redirect:/questions/ask";
-//	}
-
 }

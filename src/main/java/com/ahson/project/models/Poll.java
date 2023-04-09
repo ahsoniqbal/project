@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "poll")
 public class Poll {
@@ -25,6 +27,7 @@ public class Poll {
 	private Integer votes;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Question question;
 
 	
@@ -80,5 +83,6 @@ public class Poll {
     public int hashCode() {
         return getClass().hashCode();
     }
+    
 
 }
