@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.ahson.project.models.Poll;
+import com.ahson.project.dto.QuestionResponse;
 import com.ahson.project.models.Question;
+import com.ahson.project.security.MyUserDetails;
 import com.ahson.project.services.QuestionService;
 
 @Controller
@@ -40,10 +40,9 @@ public class QuestionController {
 	@GetMapping("/questions/{id}")
 	public String getQuestion(@PathVariable Long id, Model model) {
 		if(id!=null) {
-			Optional<Question> questionOptional = questionService.getQuestion(id);
-			if(questionOptional.isEmpty()) return "errors/404";
-			Question question = questionOptional.get();
-			model.addAttribute("ques", question);
+			//QuestionResponse  question = questionService.getQuestion(id);
+			
+			//model.addAttribute("ques", question);
 			return "questions/view";
 		}
 		return "errors/404";

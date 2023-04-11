@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "poll_voting_history")
+@Table(name = "choice_voting_history")
 public class PollVotingHistory {
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +22,7 @@ public class PollVotingHistory {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Question question;
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Poll poll;
+	private Choice poll;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 	
@@ -32,7 +32,7 @@ public class PollVotingHistory {
 	
 	
 	public PollVotingHistory() {}
-	public PollVotingHistory(Long id, Question question, Poll poll, User user, Date createdAt) {
+	public PollVotingHistory(Long id, Question question, Choice poll, User user, Date createdAt) {
 		super();
 		this.id = id;
 		this.question = question;
@@ -52,10 +52,10 @@ public class PollVotingHistory {
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
-	public Poll getPoll() {
+	public Choice getPoll() {
 		return poll;
 	}
-	public void setPoll(Poll poll) {
+	public void setPoll(Choice poll) {
 		this.poll = poll;
 	}
 	public User getUser() {

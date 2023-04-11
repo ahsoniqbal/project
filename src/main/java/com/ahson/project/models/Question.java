@@ -50,17 +50,17 @@ public class Question {
 	
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
-	private List<Poll> polls = new ArrayList<Poll>();
+	private List<Choice> choices = new ArrayList<Choice>();
 
 	public Question() {}
 	public Question(@NotNull Long id, @NotNull @NotEmpty @Size(min = 10, max = 150) String question,
-			@NotNull Date postedOn, @NotNull User askedBy, List<Poll> polls) {
+			@NotNull Date postedOn, @NotNull User askedBy, List<Choice> choices) {
 		super();
 		this.id = id;
 		this.question = question;
 		this.postedOn = postedOn;
 		this.askedBy = askedBy;
-		this.polls = polls;
+		this.choices = choices;
 	}
 
 	public Long getId() {
@@ -95,25 +95,25 @@ public class Question {
 		this.askedBy = askedBy;
 	}
 
-	public List<Poll> getPolls() {
-		return polls;
+	public List<Choice> getChoices() {
+		return choices;
 	}
 
-	public void setPolls(List<Poll> polls) {
-		this.polls = polls;
+	public void setPolls(List<Choice> choices) {
+		this.choices = choices;
 	}
 	
-	public void addPoll(Poll poll) {
-		polls.add(poll);
-		poll.setQuestion(this);
+	public void addPoll(Choice choice) {
+		choices.add(choice);
+		choice.setQuestion(this);
 	}
-	public void removePoll(Poll poll) {
-		polls.remove(poll);
-		poll.setQuestion(null);
+	public void removePoll(Choice choice) {
+		choices.remove(choice);
+		choice.setQuestion(null);
 	}
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", question=" + question + ", postedOn=" + postedOn + ", askedBy=" + askedBy
-				+ ", polls=" + polls + "]";
+				+ ", choices=" + choices + "]";
 	}
 }

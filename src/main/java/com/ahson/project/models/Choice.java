@@ -13,8 +13,8 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name = "poll")
-public class Poll {
+@Table(name = "choice")
+public class Choice {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,8 +31,8 @@ public class Poll {
 	private Question question;
 
 	
-	public Poll() {}
-	public Poll(Long id, String body, Integer votes, Question question) {
+	public Choice() {}
+	public Choice(Long id, String body, Integer votes, Question question) {
 		super();
 		this.id = id;
 		this.body = body;
@@ -75,8 +75,8 @@ public class Poll {
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Poll )) return false;
-        return id != null && id.equals(((Poll) o).getId());
+        if (!(o instanceof Choice )) return false;
+        return id != null && id.equals(((Choice) o).getId());
     }
  
     @Override

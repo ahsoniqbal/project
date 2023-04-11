@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ahson.project.dto.PollDTO;
-import com.ahson.project.dto.QuestionDTO;
-import com.ahson.project.models.Poll;
+import com.ahson.project.models.Choice;
 import com.ahson.project.models.Question;
 import com.ahson.project.models.ResponseWrapper;
 import com.ahson.project.models.User;

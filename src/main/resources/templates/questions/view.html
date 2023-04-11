@@ -13,7 +13,7 @@
 	<div class="alert alert-success" role="alert" id="message" style="display:none;"></div>
 		<h5 th:text="${ques.question}"></h5>
 		<input type="hidden" id="questionId" th:value="${ques.id}" />
-		<div th:each="poll, idx: ${ques.polls}" class="form-check">
+		<div th:each="poll, idx: ${ques.choices}" class="form-check">
 		
 			<input type="radio" th:value="${poll.id}" class="btn-check btn-lg btn-block" name="option" th:id="'opt'+${idx.index.toString()}" autocomplete="off">
 			<label th:text="${poll.body +' '+ (poll.votes!=null?poll.votes: '')}"  class="btn btn-outline-secondary" th:for="'opt'+${idx.index.toString()}"></label>	 

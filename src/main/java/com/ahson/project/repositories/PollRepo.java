@@ -2,9 +2,9 @@ package com.ahson.project.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.ahson.project.models.Poll;
+import com.ahson.project.models.Choice;
 
 
-public interface PollRepo extends CrudRepository<Poll, Integer>{
+public interface PollRepo extends CrudRepository<Choice, Integer>{
 
 }
